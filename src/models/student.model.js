@@ -43,7 +43,14 @@ async function updateStudent (data) {
       new : true,
       useFindAndModify: false
     }
-    const updatedStudent = this.findOneAndUpdate({_id: id, name: data.name}, options);
+    const update = {
+        name: data.name,
+        address: data.address,
+        born: data.born
+    }
+    const updatedStudent = await this.findOneAndUpdate({_id: id}, update, options);
+    console.log(updatedStudent);
+
     return updatedStudent;
 }
 
